@@ -2,7 +2,6 @@
   const form = /** @type {HTMLFormElement} */ document.getElementById("json-file-form");
   const fileInput = /** @type {HTMLInputElement} */ form.querySelector("input[type='file']");
   const list = /** @type {HTMLUListElement} */ document.getElementById("list");
-  const pre = /** @type {HTMLPreElement} */ document.getElementById("pre");
 
   form.onsubmit = async function (event) {
     event.preventDefault();
@@ -33,18 +32,16 @@
 
       Object.keys(flattenStats).forEach(function (itemName) {
         const itemStats = Object.keys(flattenStats[itemName]).map(function (statsName) {
-          return `<li>${statsName} = ${flattenStats[itemName][statsName]}</li>`;
+          return `<li>${statsName.substring(10)} = ${flattenStats[itemName][statsName]}</li>`;
         });
 
         const element = /** @type {HTMLLIElement} */ document.createElement("li");
         element.innerHTML = `
-          <b>${itemName}</b>
+          <b>${itemName.substring(10)}</b>
           <ul>${itemStats.join("")}</ul>
         `;
         list.appendChild(element);
       });
-
-      pre.innerHTML = JSON.stringify(flattenStats, undefined, 2);
     } catch (e) {
       console.error(e);
     }
