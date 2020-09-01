@@ -29,6 +29,8 @@
         });
       });
 
+      list.innerHTML = "";
+
       Object.keys(flattenStats).forEach(function (itemName) {
         const itemStats = Object.keys(flattenStats[itemName]).map(function (statsName) {
           return `<li>${statsName} = ${flattenStats[itemName][statsName]}</li>`;
